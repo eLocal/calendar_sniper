@@ -1,4 +1,4 @@
-require "CalendarSniper/version"
+require "calendar_sniper/version"
 
 module CalendarSniper
   extend ActiveSupport::Concern
