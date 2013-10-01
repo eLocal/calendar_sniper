@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'calendar_sniper/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "CalendarSniper"
+  spec.name          = "calendar_sniper"
   spec.version       = CalendarSniper::VERSION
   spec.authors       = ["Chris MacNaughton", "Rob DiMarco"]
   spec.email         = ["chris@elocal.com", "rob@elocal.com"]
