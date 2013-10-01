@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Gem that adds date related scopes to ActiveRecord models}
   spec.summary       = %q{CalendarSniper adds with_date_range, with_to_date, with_from_date, and
     in_date_range scopes to ActiveRecord models that it is included into.}
-  spec.homepage      = "https://github.com/eLocal/CalendarSniper"
+  spec.homepage      = "https://github.com/eLocal/calendar_sniper"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
