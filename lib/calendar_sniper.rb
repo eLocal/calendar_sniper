@@ -59,6 +59,8 @@ module CalendarSniper
       elsif /^\d{4}-\d{1,2}-\d{1,2}/ =~ str
         if /^\d{4}-\d{1,2}-\d{1,2} \S+/ =~ str
           '%Y-%m-%d %Z'
+        elsif /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2}:\d{2}+/
+          '%Y-%m-%d %k:%M:%S'
         else
           '%Y-%m-%d'
         end
