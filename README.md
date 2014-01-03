@@ -1,12 +1,12 @@
-# CalendarSniper
+# calendar_sniper
 
-CalendarSniper adds date related scopes to ActiveRecord models
+calendar_sniper adds date related scopes to ActiveRecord models
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'CaendarSniper'
+    gem 'calendar_sniper'
 
 And then execute:
 
@@ -14,11 +14,11 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install CalendarSniper
+    $ gem install calendar_sniper
 
 ## Usage
 
-CalendarSniper adds ```with_date_range```, ```with_to_date```, ```with_from_date```, and ```in_date_range``` scopes to ActiveRecord models that it is included into.
+calendar_sniper adds ```with_date_range```, ```with_to_date```, ```with_from_date```, and ```in_date_range``` scopes to ActiveRecord models that it is included into.
 
 ```with_date_range``` takes a number that is the number of days
 ```in_date_range``` takes a start and end date
