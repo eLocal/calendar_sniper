@@ -1,4 +1,5 @@
 require "calendar_sniper/version"
+require 'active_support'
 
 module CalendarSniper
   extend ActiveSupport::Concern
@@ -57,7 +58,7 @@ module CalendarSniper
       if /^\d{1,2}\/\d{1,2}\/\d{4}/ =~ str
         '%m/%d/%Y'
       elsif /^\d{4}-\d{1,2}-\d{1,2}/ =~ str
-        if /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2}:\d{2}+/ =~ str
+        if /^\d{4}-\d{1,2}-\d{1,2}\s+\d{1,2}:\d{2}:\d{2}+/ =~ str
           '%Y-%m-%d %k:%M:%S'
         elsif /^\d{4}-\d{1,2}-\d{1,2} \S+/ =~ str
           '%Y-%m-%d %Z'
