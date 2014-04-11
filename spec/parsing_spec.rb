@@ -11,7 +11,8 @@ describe CalendarSniper::ClassMethods do
     [ '%m/%d/%Y', '01/01/2013'],
     [ '%Y-%m-%d', '2013-01-01'],
     [ '%Y-%m-%d %Z', '2013-01-01 +01:00' ],
-    [ '%Y-%m-%d %k:%M:%S', '2013-01-01  3:00:00' ]
+    [ '%Y-%m-%d %k:%M:%S', '2013-01-01  3:00:00' ],
+    [ '%Y-%m-%d %l:%M:%S%z', '2013-01-01 2:50:00-0400']
   ].each do |format, example|
     it "can parse #{example} as #{format}" do
       expect(TestSniper.send(:coalesce_date, example, '=')).to eq(DateTime.strptime(example, format))
