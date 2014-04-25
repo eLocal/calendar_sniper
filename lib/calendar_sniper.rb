@@ -1,5 +1,8 @@
 require "calendar_sniper/version"
 require 'active_support'
+require 'active_support/core_ext/date'
+require 'active_support/core_ext/date_time'
+require 'active_support/core_ext/time'
 
 module CalendarSniper
   extend ActiveSupport::Concern
@@ -36,7 +39,7 @@ module CalendarSniper
 
     def coalesce_date(from_date_or_string, by_direction)
       if from_date_or_string.is_a?(String)
-        date_from_string = DateTime.strptime(from_date_or_string, date_format_for_string(from_date_or_string))
+        date_from_string = Time.strptime(from_date_or_string, date_format_for_string(from_date_or_string))
         set_time_for_direction(date_from_string, by_direction)
       else
         set_time_for_direction(from_date_or_string, by_direction)
