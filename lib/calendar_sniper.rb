@@ -1,4 +1,4 @@
-require "calendar_sniper/version"
+require 'calendar_sniper/version'
 require 'active_support'
 require 'active_support/core_ext/date'
 require 'active_support/core_ext/date_time'
@@ -8,10 +8,10 @@ module CalendarSniper
   extend ActiveSupport::Concern
 
   included do
-    scope :with_date_range, lambda { |num_days| with_from_date(num_days.to_f.days.ago) }
-    scope :with_to_date, lambda { |date| search_in_date_range :<, date }
-    scope :with_from_date, lambda { |date| search_in_date_range :>, date }
-    scope :in_date_range, lambda { |from,to| with_from_date(from).with_to_date(to) }
+    scope :with_date_range, ->(num_days) { with_from_date(num_days.to_f.days.ago) }
+    scope :with_to_date, ->(date) { search_in_date_range :<, date }
+    scope :with_from_date, ->(date) { search_in_date_range :>, date }
+    scope :in_date_range, ->(from, to) { with_from_date(from).with_to_date(to) }
   end
 
   module ClassMethods
@@ -23,14 +23,14 @@ module CalendarSniper
     #
     #   filterable_by_date_range :internal_lead_received_at
     #
-    def filterable_by_date_range with_name=:created_at
+    def filterable_by_date_range(with_name = :created_at)
       @_filterable_by_date_range_field = with_name.to_s
     end
 
     # Search through the date range in a given direction. Uses the
     # field given in the +filterable_by_date_range+ macro that you
     # can add to ActiveRecord, otherwise it defaults to 'created_at'.
-    def search_in_date_range by_direction, with_date
+    def search_in_date_range(by_direction, with_date)
       logger.debug "Searched #{date_field} on #{self.class.name} with a scope"
       where("#{table_name}.#{date_field} #{by_direction}= ?", coalesce_date(with_date, by_direction))
     end
@@ -71,7 +71,7 @@ module CalendarSniper
           '%Y-%m-%d'
         end
       else
-        raise "Date string in unknown format: #{str}"
+        fail "Date string in unknown format: #{str}"
       end
     end
 

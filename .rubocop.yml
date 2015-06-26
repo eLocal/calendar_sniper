@@ -1,0 +1,27 @@
+AllCops:
+  Include:
+    - Rakefile
+  Exclude:
+    - db/**/*
+    - config/**/*
+    - script/**/*
+    - bin/**/*
+LineLength:
+  Enabled: true
+  Max: 150
+Documentation:
+  Enabled: false
+AlignParameters:
+  Enabled: false
+MethodLength:
+  Max: 30
+AndOr:
+  Enabled: false
+ClassLength:
+  Max: 200
+ClassAndModuleChildren:
+  Enabled: false
+MultilineOperationIndentation:
+  Enabled: false
+Metrics/AbcSize:
+  Max: 20
