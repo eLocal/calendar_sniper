@@ -8,7 +8,20 @@ module CalendarSniper
   extend ActiveSupport::Concern
 
   included do
-    scope :with_date_range, ->(num_days) { with_from_date(num_days.to_f.days.ago) }
+    scope(:with_date_range, lambda do |num_days|
+      case num_days
+      when /\A\d+(?:\.\d+)?\z/
+        with_from_date(num_days.to_f.days.ago)
+      when 'today'
+        where(started: Date.today.beginning_of_day..Time.now)
+      when 'yesterday'
+        where(started: Date.yesterday.beginning_of_day..Date.yesterday.end_of_day)
+      when 'last_month'
+        where(started: 1.month.ago.beginning_of_month..1.month.ago.end_of_month)
+      else
+        fail "Unknown date range for filtering: #{num_days}"
+      end
+    end)
     scope :with_to_date, ->(date) { search_in_date_range :<, date }
     scope :with_from_date, ->(date) { search_in_date_range :>, date }
     scope :in_date_range, ->(from, to) { with_from_date(from).with_to_date(to) }
