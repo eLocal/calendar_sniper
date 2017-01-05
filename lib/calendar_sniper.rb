@@ -13,11 +13,11 @@ module CalendarSniper
       when /\A\d+(?:\.\d+)?\z/
         with_from_date(num_days.to_f.days.ago)
       when 'today'
-        where(started: Date.today.beginning_of_day..Time.now)
+        where(created_at: Date.today.beginning_of_day..Time.now)
       when 'yesterday'
-        where(started: Date.yesterday.beginning_of_day..Date.yesterday.end_of_day)
+        where(created_at: Date.yesterday.beginning_of_day..Date.yesterday.end_of_day)
       when 'last_month'
-        where(started: 1.month.ago.beginning_of_month..1.month.ago.end_of_month)
+        where(created_at: 1.month.ago.beginning_of_month..1.month.ago.end_of_month)
       else
         fail "Unknown date range for filtering: #{num_days}"
       end
