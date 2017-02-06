@@ -12,6 +12,9 @@ module CalendarSniper
       case num_days
       when /\A\d+(?:\.\d+)?\z/
         with_from_date(num_days.to_f.days.ago)
+      when /\A\d{4}\-\d{2}\-\d{2}\:{1}\d{4}\-\d{2}\-\d{2}\z/
+        date_strings = num_days.split(':')
+        where(created_at: date_strings.first.to_date.beginning_of_day..date_strings.last.to_date.end_of_day)
       when 'today'
         where(created_at: Date.today.beginning_of_day..Time.now)
       when 'yesterday'
